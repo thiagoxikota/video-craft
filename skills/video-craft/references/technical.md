@@ -8,7 +8,7 @@ The bundled CLI needs Python 3.10+, FFmpeg with libx264/AAC and ffprobe. It exec
 
 ## Timeline contract
 
-The version-1 JSON timeline accepts width/height (even, 64–4096), fps (1–60), fit (`contain` or `cover`) and 1–100 clips. Each clip has a local `file`, `start`, `duration` and audio `keep`/`mute`. Paths are relative to the timeline file; absolute paths work too. The CLI rejects unknown fields, invalid numbers, missing video, intervals past the source, and HDR flagged as PQ/HLG.
+The version-1 JSON timeline accepts width/height (even, 64–4096), fps (1–60), fit (`contain` or `cover`) and 1–100 clips. Each clip has a local `file`, `start`, `duration` and audio `keep`/`mute`. Paths are relative to the timeline file; absolute paths and home-directory paths starting with `~/` work too. CLI paths also expand `~` without relying on a shell. The CLI rejects unknown fields, invalid numbers, missing video, intervals past the source, and HDR flagged as PQ/HLG.
 
 `contain` preserves the full frame with padding. `cover` crops centrally. FFmpeg applies input rotation automatically; review the resulting frame rather than swapping width/height twice. Mixed inputs are normalized to a common frame rate, geometry, square pixels, H.264/yuv420p and stereo 48 kHz. Silent clips receive a silent placeholder track for concatenation. Metadata is stripped from generated videos, but visible private content is not detected or redacted.
 

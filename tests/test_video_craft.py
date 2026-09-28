@@ -43,6 +43,22 @@ class VideoCraftTests(unittest.TestCase):
         self.assertAlmostEqual(info['duration_seconds'], 4, delta=.1)
         self.assertTrue(info['audio']['present'])
 
+    def test_literal_home_path_in_cli_and_timeline(self):
+        if not ROOT.is_relative_to(Path.home()):
+            self.skipTest('Literal ~ integration needs a checkout below the real home directory.')
+        with tempfile.TemporaryDirectory(prefix='.video-craft-test-', dir=ROOT) as folder:
+            fixture = Path(folder) / 'clip with spaces.mp4'
+            fixture.write_bytes(self.media.read_bytes())
+            literal = '~/' + fixture.relative_to(Path.home()).as_posix()
+            for command in ['inspect', 'verify']:
+                with self.subTest(command=command):
+                    result = subprocess.run([sys.executable, CLI, command, literal], capture_output=True, text=True)
+                    self.assertEqual(result.returncode, 0, result.stderr)
+                    self.assertEqual(json.loads(result.stdout)['bytes'], fixture.stat().st_size)
+            timeline = self.timeline('tilde.json', clips=[dict(file=literal, start=0, duration=1)])
+            normalized = v.validate_timeline(timeline)
+            self.assertEqual(normalized['clips'][0]['file'], fixture.resolve())
+
     def test_render_mixed_silent_audio_clips(self):
         timeline = self.timeline('mixed.json', clips=[dict(file=str(self.media), start=.2, duration=1), dict(file=str(self.silent), start=.1, duration=1)])
         out = self.p / 'mixed.mp4'

@@ -8,7 +8,7 @@
       "name": "video-craft",
       "source": "./",
       "description": "Edit local footage with editorial judgment and measurable export checks.",
-      "version": "1.0.0"
+      "version": "1.0.1"
     }
   ],
   "description": "Local video editing, sound craft and export verification tools."

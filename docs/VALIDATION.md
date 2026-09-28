@@ -1,14 +1,15 @@
-# Release 1.0.0 validation
+# Release 1.0.1 validation
 
 Validated 2026-09-28 on macOS with Python 3.14.7 and FFmpeg 9.0.1.
 
-- 18 automated tests passed, using generated synthetic media and no downloaded footage.
+- 19 automated tests passed, using generated synthetic media and no downloaded footage.
+- Literal home-directory paths tested through real `inspect` and `verify` subprocess calls and JSON timeline validation. This regression failed before the 1.0.1 fix.
 - Actual render, mixed audio/silent clip assembly, image contact sheet and AAC mastering measured successfully.
 - Invalid ranges, non-finite inputs, source replacement, existing outputs, symlinks, network playlists and shell-like filenames covered.
 - Local skill installation into a clean project passed; repeat installation refused replacement.
 - Skill frontmatter validator passed.
 - Claude plugin and marketplace manifests passed `claude plugin validate` without warnings.
-- Marketplace registration and plugin installation passed in an isolated Claude configuration. The installed plugin appeared enabled at version 1.0.0.
+- Marketplace registration and plugin installation passed in an isolated Claude configuration. The initial installed plugin appeared enabled at version 1.0.0; 1.0.1 preserves the package structure and updates path handling.
 - Generated contact sheet opened and visually inspected. It is a technical fixture, not an artistic showcase.
 - Local Markdown reference links checked. Public package checked for private machine paths, credential patterns and media assets.
 

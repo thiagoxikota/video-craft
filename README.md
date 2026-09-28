@@ -94,7 +94,7 @@ python3 skills/video-craft/scripts/video_craft.py assemble timeline.json out/cor
 python3 skills/video-craft/scripts/video_craft.py inspect out/corte.mp4 --audio
 ```
 
-A timeline aceita cortes, `keep`/`mute`, frame rate, dimensões e `contain`/`cover`. `contain` preserva o quadro; `cover` corta pelo centro. HDR sinalizado é recusado até passar por um tratamento de cor deliberado. A montagem não adiciona música nem legendas automaticamente.
+Caminhos locais aceitam `~/` mesmo quando passados entre aspas ou dentro do JSON. A timeline aceita cortes, `keep`/`mute`, frame rate, dimensões e `contain`/`cover`. `contain` preserva o quadro; `cover` corta pelo centro. HDR sinalizado é recusado até passar por um tratamento de cor deliberado. A montagem não adiciona música nem legendas automaticamente.
 
 ## Som e entrega
 

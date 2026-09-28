@@ -12,7 +12,7 @@ import subprocess
 import sys
 import tempfile
 
-VERSION = "1.0.0"
+VERSION = "1.0.1"
 
 
 class CraftError(Exception):
@@ -126,6 +126,7 @@ def measure_audio(path, target=-14, peak=-2):
 
 
 def inspect(path, audio=False):
+    path = local_file(path)
     data = probe(path)
     v = stream(data, "video")
     result = {"file": Path(path).name, "duration_seconds": duration(data), "bytes": Path(path).stat().st_size,
@@ -197,7 +198,7 @@ def validate_timeline(path):
         value = clip.get("file", "")
         if not isinstance(value, str) or "://" in value:
             raise CraftError("Clip file must be a local path.")
-        src = local_file(manifest.parent / value)
+        src = local_file(manifest.parent / Path(value).expanduser())
         data = probe(src)
         v = stream(data, "video")
         if not v:
