@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "fit": "contain",
+  "note": "Replace paths and timing with inspected local footage. Paths are relative to this JSON file.",
+  "clips": [
+    {"file": "media/first.mp4", "start": 0, "duration": 2, "audio": "keep", "note": "Open with the action."},
+    {"file": "media/second.mp4", "start": 1, "duration": 3, "audio": "mute", "note": "A contrasting detail; muted deliberately."}
+  ]
+}

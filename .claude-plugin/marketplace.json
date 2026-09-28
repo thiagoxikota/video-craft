@@ -1,0 +1,15 @@
+{
+  "name": "video-craft-tools",
+  "owner": {
+    "name": "Thiago Xikota"
+  },
+  "plugins": [
+    {
+      "name": "video-craft",
+      "source": "./",
+      "description": "Edit local footage with editorial judgment and measurable export checks.",
+      "version": "1.0.0"
+    }
+  ],
+  "description": "Local video editing, sound craft and export verification tools."
+}
